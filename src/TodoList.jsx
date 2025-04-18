@@ -32,11 +32,10 @@ export default function TodoList() {
   }
 
   function deleteItem(index) {
-    const newArray = itemsValue.filter((item) => {
-      if (item.key !== index);
-    });
+    const newArray = itemsValue.filter((_, i) => i !== index);
     setItemsValue(newArray);
   }
+
   return (
     <>
       <header>
@@ -67,7 +66,10 @@ export default function TodoList() {
                   <li key={index}>
                     {item}{" "}
                     <div className="buttons">
-                      <button className="delete" onClick={deleteItem}>
+                      <button
+                        className="delete"
+                        onClick={() => deleteItem(index)}
+                      >
                         Delete
                       </button>
                       <button className="up" onClick={() => makeUp(index)}>
